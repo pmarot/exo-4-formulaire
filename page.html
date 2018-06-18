@@ -11,25 +11,19 @@
         crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <script>
-        $.ajax({
-            url: "localhost:3005/form",
-            context: document.body
-        }).done(function () {
-            $("#addition").append(chiffre3);
-        });
-    </script>
 
-    <form action="/form" method="post">
+
+    <form>
         <input type="chiffre1" name="chiffre1" id="chiffre1">
         <input type="chiffre2" name="chiffre2" id="chiffre2">
-        <input type="submit" value="addition">
+        <input type="button" value="addition" id="addition">
     </form>
 
-    <div id="addition">
+    <div id="resultat">
 
     </div>
 
@@ -40,6 +34,39 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
+    <script>
+        // $.ajax({
+        //     type :'POST',
+        //     url: "localhost:3005/form",
+        //     context: document.body
+        // }).done(function (chiffre3) {
+        //     $("#button").click(function () {
+        //         $("#addition").append(chiffre3)
+        //     });
+        //     console.log(chiffre3)
+        // });
+        $(document).ready(function () {
+            $("#addition").click(function () {
+                var chiffre1 = $("#chiffre1").val();
+                var chiffre2 = $("#chiffre2").val();
+                console.log("ok");
+                $.ajax({
+                    method: "POST",
+                    url: "http://localhost:3005/addition",
+                    data: {nb1:chiffre1,nb2:chiffre2}
+                })
+                    .done(function (msg) {
+                        // alert("Data Saved: " + msg);
+                        $("#resultat").append(msg) })
+                    .fail(function(x, b){
+                        console.log("bof");
+                    })
+            });
+        });
+
+                // data: "nb1="+nb1+"&nb2="+nb2;
+    </script>
 </body>
 
 </html>

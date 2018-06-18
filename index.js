@@ -9,11 +9,19 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/page.html');
 });
 
-app.post('/form', function (req, res) {
-    var chiffre1 = req.body.chiffre1;
-    var chiffre2 = req.body.chiffre2;
+app.post('/addition', function (req, res) {
+    console.log(req.body);
+    var chiffre1 = req.body.nb1;
+    var chiffre2 = req.body.nb2;
     var chiffre3 = parseInt(chiffre1) + parseInt(chiffre2);
+    console.log(chiffre3);
+    res.send(""+chiffre3);
 });
+
+// app.get('/', function (req, res) {
+//     res.send(chiffre3);
+// });
+
 
 app.listen(3005);
 
