@@ -10,13 +10,67 @@ app.get('/', function (req, res) {
 });
 
 app.post('/addition', function (req, res) {
-    console.log(req.body);
-    var chiffre1 = req.body.nb1;
-    var chiffre2 = req.body.nb2;
-    var chiffre3 = parseInt(chiffre1) + parseInt(chiffre2);
-    console.log(chiffre3);
-    res.send(""+chiffre3);
+    // console.log(req.body);
+    // var chiffre1 = req.body.nb1;
+    // var chiffre2 = req.body.nb2;
+    // var chiffre3 = parseInt(chiffre1) + parseInt(chiffre2);
+    // console.log(chiffre3);
+    // res.send(""+chiffre3);
+    res.send("" + faireAddition(req.body.nb1, req.body.nb2))
 });
+
+app.post('/multiplication', function (req, res) {
+    res.send("" + faireMultiplication(req.body.nb1, req.body.nb2))
+});
+app.post('/soustraction', function (req, res) {
+    res.send("" + faireSoustraction(req.body.nb1, req.body.nb2))
+});
+app.post('/division', function (req, res) {
+    res.send("" + faireDivision(req.body.nb1, req.body.nb2))
+});
+
+
+function faireAddition(nb1, nb2) {
+    var chiffre3 = 0;
+    var chiffre1 = nb1;
+    var chiffre2 = nb2;
+    if (chiffre1 != undefined || chiffre2 != undefined) {
+        chiffre3 = parseInt(chiffre1) + parseInt(chiffre2);
+    }
+    return chiffre3;
+}
+
+
+function faireMultiplication(nb1, nb2) {
+    var chiffre3 = 0;
+    var chiffre1 = nb1;
+    var chiffre2 = nb2;
+    if (chiffre1 != undefined || chiffre2 != undefined) {
+        chiffre3 = parseInt(chiffre1) * parseInt(chiffre2);
+    }
+    return chiffre3;
+}
+
+function faireDivision(nb1, nb2) {
+    var chiffre3 = 0;
+    var chiffre1 = nb1;
+    var chiffre2 = nb2;
+    if (chiffre1 != undefined || chiffre2 != undefined) {
+        chiffre3 = parseInt(chiffre1) / parseInt(chiffre2);
+    }
+    return chiffre3;
+}
+
+function faireSoustraction(nb1, nb2) {
+    var chiffre3 = 0;
+    var chiffre1 = nb1;
+    var chiffre2 = nb2;
+    if (chiffre1 != undefined || chiffre2 != undefined) {
+        chiffre3 = parseInt(chiffre1) - parseInt(chiffre2);
+    }
+    return chiffre3;
+}
+
 
 // app.get('/', function (req, res) {
 //     res.send(chiffre3);
